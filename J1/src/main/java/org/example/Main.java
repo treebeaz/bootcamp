@@ -6,7 +6,11 @@ import org.example.ex2.Time;
 import org.example.ex3.Fibonacci;
 import org.example.ex4.ArithmeticMean;
 import org.example.ex5.SameNumbers;
+import org.example.ex6.SelectionSort;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -16,7 +20,9 @@ public class Main {
 //        secondTask();
 //        thirdTask();
 //        fourthTask();
-        fifthTask();
+//        fifthTask();
+//        sixthTask();
+        seventhTask();
     }
 
     public static void firstTask() {
@@ -114,8 +120,8 @@ public class Main {
                 for(int i = 0; i < size; i++) {
                     array[i] = Integer.parseInt(scanner.next());
                 }
-                if(SameNumbers.findIdenticalFirstAndLastNumber(array, size) != null) {
-                    for (var element : Objects.requireNonNull(SameNumbers.findIdenticalFirstAndLastNumber(array, size))) {
+                for (var element : Objects.requireNonNull(SameNumbers.findIdenticalFirstAndLastNumber(array, size))) {
+                    if(element != 0) {
                         System.out.print(element + " ");
                     }
                 }
@@ -129,5 +135,39 @@ public class Main {
                 System.out.println("Couldn't parse a number. Please, try again");
             }
         }
+    }
+
+    public static void sixthTask() {
+        Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
+        boolean isValid = false;
+
+        while(!isValid) {
+            try {
+                int size = Integer.parseInt(scanner.nextLine());
+                double[] array = new double[size];
+
+                for(int i = 0; i < size; i++) {
+                    array[i] = Double.parseDouble(scanner.next());
+                }
+
+                for(var el : SelectionSort.sort(array, size)) {
+                    System.out.print(el + " ");
+                }
+
+                isValid = true;
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Couldn't parse a number. Please, try again");
+            }
+            catch (NegativeArraySizeException e) {
+                System.out.println("Input error. Size <= 0");
+                break;
+            }
+        }
+    }
+
+    public static void seventhTask() {
+
     }
 }
